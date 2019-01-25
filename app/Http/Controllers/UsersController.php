@@ -9,7 +9,7 @@ class UsersController extends Controller
 {
 
      function __construct(){
-         $this->middleware(['auth','roles:admin,estudiantes']);
+         $this->middleware(['auth','roles:admin,estudiantes']); // no deje entrar ninguno de estos roles
      } 
 
     /**

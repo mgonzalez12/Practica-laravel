@@ -24,7 +24,7 @@
                     <th>{{$user->id }}</th>
                     <th>{{$user->name}}</th>
                     <th>{{ $user->email}} </th>
-                    <th>{{ $user->role}} </th>
+                    <th>{{ $user->role->name}} </th>
                 </tr>
             @endforeach
         </tbody>
