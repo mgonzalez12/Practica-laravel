@@ -19,11 +19,11 @@ class CheckRoles
          $roles = array_slice(func_get_args(),2);  // saca los dos primeros
        
         //dd($roles);
-        foreach($roles as $role){
-            if (! $request->user()->hasRoles($role)) {
+      
+            if (! $request->user()->hasRoles($roles)) {
                 return $next($request);
             }
-        }
+      
 
         
         

@@ -49,7 +49,7 @@
                                 </li>
                             @endif
                         @else
-                        @if(auth()->user()->hasRoles('admin'))
+                        @if(auth()->user()->hasRoles(['admin','estudiante']))
                             <li class="nav-item "> 
                                 <a class="nav-link" href="{{ url('users') }}">{{ __('Administracion') }}</a>
                             </li>
