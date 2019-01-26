@@ -15,7 +15,8 @@
 
         <p><label for="name">
             Nombre
-            <input id="name" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="name" value="{{ $user->name }}" required >
+            <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" 
+            value="{{ $user->name }}"  >
          
             @if ($errors->has('name'))
                                     <span class="invalid-feedback" role="alert">

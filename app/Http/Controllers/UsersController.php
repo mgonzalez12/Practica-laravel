@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use App\Http\Request\UpdateUserRequest;
-use Validator;
 
 class UsersController extends Controller
 {
@@ -80,15 +78,15 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|max:255'
+     
+        $this->validate(request(), [
+            'name' => 'required',
         ]);
-
       //  dd($validator);
-        if ($validator->fails()) {
+        
             $user= User::find($id);
             $user->update($request->all());
-        }
+        
         return back()->with('info','Usuario actualizado');
     }
 

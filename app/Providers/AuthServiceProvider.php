@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -13,7 +14,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Model' => 'App\Policies\ModelPolicy',
+        'App\User' => 'App\Policies\UserPolicy',
     ];
 
     /**
@@ -26,5 +27,19 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         //
+    }
+
+    public function before($user,$ability){
+        if($user->hasRoles(['estudiantes'])){
+            return true;
+        }
+    } 
+
+    public function edit(User $authUser,User $user){
+        return $authUser->id === $user->id;
+    }
+
+    public function update(User $authUser,User $user){
+        return $authUser->id === $user->id;
     }
 }
