@@ -1,4 +1,6 @@
+@extends('layouts.main')
 
+@section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -24,7 +26,18 @@
                     <th>{{$user->id }}</th>
                     <th>{{$user->name}}</th>
                     <th>{{ $user->email}} </th>
-                    <th>{{ $user->role->name}} </th>
+                    @foreach($user->roles as $role)
+                    <th>{{ $role->name}} </th>
+                    @endforeach
+                    <th>
+                        <a href="{{ route('users.edit',$user->id)}}" class="btn btn-primary">Edit</a>
+
+                        <form method="post" action="{{ route('users.destroy',$user->id)}}">
+                         {!!  csrf_field() !!}
+                         {!! method_field('DELETE') !!}
+                        </form>
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </th>
                 </tr>
             @endforeach
         </tbody>
@@ -35,3 +48,4 @@
         </div>
     </div>
 </div>
+@stop

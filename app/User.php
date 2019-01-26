@@ -29,9 +29,9 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function role()
+    public function roles()
     {
-        return $this->belongsTo( 'App\Models\Role');
+        return $this->belongsToMany( 'App\Models\Role','assigned_roles');
     }
 
     public function hasRoles(array $roles)
@@ -39,9 +39,11 @@ class User extends Authenticatable
        
        foreach ($roles as $role)
        {
-           if($this->role->name === $role){
-            return  true;
-           }
+           foreach($this->roles as $userRole){
+                if($userRole->name === $role){
+                    return  true;
+                }
+            }
        }
         return false;
     }
